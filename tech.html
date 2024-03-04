@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is my bill?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 600px;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="email"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background-color: #4C68D7; /* Blue color */
+            color: white;
+            padding: 10px 20px;
+            border: 2px solid black; /* Black border */
+            border-radius: 20px; /* Increased border radius */
+            cursor: pointer;
+            outline: none;
+            display: block; /* Make buttons block to fill width */
+            width: calc(100% - 24px); /* Adjust width to account for border */
+            margin-bottom: 10px; /* Space between buttons */
+        }
+
+        .btn.active {
+            background-color: #3B4B9D; /* Darker blue for active state */
+        }
+
+        /* Hover effect for buttons */
+        .btn:hover {
+            background-color: #365A9C;
+        }
+
+        /* Remove styles from radio buttons */
+        input[type="radio"] {
+            display: none;
+        }
+
+        /* Style for labels associated with radio buttons to look like buttons */
+        label.btn {
+            cursor: pointer;
+            display: inline-block;
+            margin-right: 10px; /* Space between label buttons */
+        }
+
+        /* Adjust form submit button */
+        .form-group button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px; /* Increased border radius */
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .form-group .next-button {
+              background-color: #4CAF50; /* Green color for Next button */
+              color: white;
+              padding: 10px;
+              margin-top: 10px;
+              border: none;
+              border-radius: 20px;
+              cursor: pointer;
+              font-size: 16px;
+          }
+          .form-group .next-button:hover {
+              background-color: #45a049;
+          }
+
+          /* Additional styles for centering the submit button */
+       .form-group.submit-group {
+           text-align: center;
+       }
+
+       /* Style for outlining required fields in red */
+       input:required:invalid {
+           border: 2px solid red;
+       }
+
+       /* Style for when the input becomes valid */
+       input:required:valid {
+           border: 2px solid green;
+       }
+
+    </style>
+
+</head>
+<body>
+
+<h1>What is my bill?</h1>
+<form id="myForm" action="YOUR_BACKEND_ENDPOINT" method="POST">
+
+    <div class="form-group">
+        <label>Choose bill type (Getting a new phone or just plan? ) *</label>
+        <button type="button" id="byod" class="btn" onclick="toggleFields('BYOD')">BYOD (No-Term, Continue using current phone)</button>
+        <button type="button" id="newPhone" class="btn" onclick="toggleFields('New Phone')">New Phone (Contract)</button>
+
+    </div>
+    <div id="newPhoneFields" class="hidden">
+        <div class="form-group">
+            <label for="monthlyPlanCostContract">Monthly Plan Cost *</label>
+            <input type="text" id="monthlyPlanCostContract" name="monthlyPlanCostContract" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phoneRetailCost">Phone Retail Cost *</label>
+            <input type="text" id="phoneRetailCost" name="phoneRetailCost" required>
+        </div>
+
+        <div class="form-group">
+            <label for="monthlyAddonCost">Monthly Add-on (If applicable) Cost</label>
+            <input type="text" id="monthlyAddonCost" name="monthlyAddonCost">
+        </div>
+
+        <div class="form-group">
+            <label for="downPayment">Total down payment (If applicable)</label>
+            <input type="text" id="downPayment" name="downPayment">
+        </div>
+        <div class="form-group">
+            <label for="financingDiscount">Phone Financing Discount (If applicable)</label>
+            <input type="text" id="financingDiscount" name="financingDiscount">
+        </div>
+    </div>
+    <div id="byodFields" class="hidden">
+        <div class="form-group">
+            <label for="monthlyPlanCostNoTerm">Monthly Plan Cost *</label>
+            <input type="text" id="monthlyPlanCostNoTerm" name="monthlyPlanCostNoTerm" required>
+        </div>
+        <div class="form-group">
+            <label for="monthlyAddonCost">Monthly Add-on Cost (If applicable)</label>
+            <input type="text" id="monthlyAddonCost" name="monthlyAddonCost">
+        </div>
+
+    </div>
+    <div class="form-group">
+        <button type="submit">Submit</button>
+    </div>
+</form>
+
+<script>
+function toggleFields(selectedType) {
+    var byodFields = document.getElementById('byodFields');
+    var newPhoneFields = document.getElementById('newPhoneFields');
+
+    // Remove 'active' class from all buttons
+    document.getElementById('byod').classList.remove('active');
+    document.getElementById('newPhone').classList.remove('active');
+
+    // Add 'active' class to the clicked button and toggle visibility of fields
+    if (selectedType === 'BYOD') {
+        document.getElementById('byod').classList.add('active');
+        byodFields.style.display = 'block';
+        newPhoneFields.style.display = 'none';
+    } else if (selectedType === 'New Phone') {
+        document.getElementById('newPhone').classList.add('active');
+        byodFields.style.display = 'none';
+        newPhoneFields.style.display = 'block';
+    }
+}
+
+// Add event listener to form submit to prevent default for demo purposes
+document.getElementById('myForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    alert('Form submitted');
+    // Additional code to handle form submission
+});
+
+// Function to handle button click and select the option
+function selectOption(selectedId) {
+    // Toggle fields based on selected option
+    toggleFields(selectedId);
+}
+
+// Add validation event listeners
+    document.addEventListener('DOMContentLoaded', function() {
+        var inputs = document.querySelectorAll('input:required');
+        inputs.forEach(function(input) {
+            input.oninput = function() {
+                if (input.validity.valid) {
+                    input.style.borderColor = 'green';
+                } else {
+                    input.style.borderColor = 'red';
+                }
+            };
+        });
+    });
+
+</script>
+
+
+</body>
+</html>
