@@ -1,0 +1,66 @@
+/* Modern Design Upgrade CSS */
+
+/* General background */
+body {
+    background-color: #000; /* Black background outside the form area */
+}
+
+/* Form background - resembling a smartphone */
+.container {
+    background-color: #f2f2f2; /* Light grey background for the form area */
+    padding: 20px;
+    border-radius: 25px; /* Rounded corners for the smartphone shape */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Adding depth with shadow */
+    border: 5px solid #555; /* Solid border to mimic a phone's edge */
+    max-width: 500px; /* Maximum width to resemble a smartphone width */
+    margin: auto; /* Center the form container */
+}
+
+/* Button styles */
+.btn {
+    background-color: #4CAF50; /* Green color for buttons */
+    color: white;
+    border-radius: 15px; /* Slightly rounded buttons */
+}
+
+.btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Input fields styles */
+input[type="text"], input[type="email"] {
+    border: 1px solid #ccc; /* Default border color */
+    background-color: #fff; /* White background for input fields */
+    border-radius: 15px; /* Slightly rounded input fields */
+}
+
+/* Submit button specific styles */
+.form-group.submit-group button {
+    width: auto;
+    padding: 10px 20px;
+    margin: 20px 0; /* Extra space at the bottom */
+    border-radius: 15px; /* Slightly rounded submit button */
+}
+
+/* Border and line styles for each input field group */
+.form-group {
+    border-bottom: 1px solid #ddd; /* Light grey line below each form group */
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+/* Last form-group doesn't have a border at the bottom */
+.form-group:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* Required field border color */
+input:required:invalid {
+    border-color: red;
+}
+
+input:required:valid {
+    border-color: green;
+}

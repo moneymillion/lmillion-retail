@@ -4,30 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>What is my bill?</title>
+<link rel="stylesheet" type="text/css" href="moderndesignupgrade.css">
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            width: 600px;
+            width: 100%;
             margin: 0 auto;
-            padding-top: 50px;
+            padding-top: 0.5%;
         }
         h1 {
             text-align: center;
+            margin: 5% 0; /* Add top and bottom margins */
+
         }
+
+       .container {
+            padding: 0 5%; /* Add 5% padding to the left and right */
+            max-width: 600px; /* Maximum width */
+            margin: auto; /* Center the container */
+        }
+
+	#byodFields, #newPhoneFields {
+    	background-color: #f2f2f2; /* Light grey background */
+    	padding: 15px;
+    	border-radius: 10px; /* Slightly rounded corners for aesthetics */
+    	margin-bottom: 20px; /* Space below the section */
+	}
+
+	/* This will also ensure that the red border from validation is visible */
+	input:required:invalid {
+    	border: 2px solid red;
+    	background-color: #fff; /* White background to make the red border stand out */
+	}
+
+	/* You might want to ensure the valid input stands out as well */
+	input:required:valid {
+    	border: 2px solid green;
+    	background-color: #f2f2f2; /* Light grey background to match the section */
+	}
+
+
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 3%;
         }
+
         label {
             font-weight: bold;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 5%;
+	    text-align: center;
         }
         input[type="text"], input[type="email"] {
-            width: calc(100% - 22px);
+           
             padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            border-radius: 40px;
+            width: calc(100% - 15%); /* Adjust width to account for border */
+            margin: 0 auto; /* Centers the button */
+	    margin-bottom: 1%;
+    	    display: block; /* Needed along with margin: 0 auto; to center */
         }
 
         .btn {
@@ -38,10 +75,11 @@
             border-radius: 20px; /* Increased border radius */
             cursor: pointer;
             outline: none;
-            display: block; /* Make buttons block to fill width */
             width: calc(100% - 24px); /* Adjust width to account for border */
-            margin-bottom: 10px; /* Space between buttons */
-        }
+            margin: 0 auto; /* Centers the button */
+	    margin-bottom: 2%;
+    	    display: block; /* Needed along with margin: 0 auto; to center */
+	}
 
         .btn.active {
             background-color: #3B4B9D; /* Darker blue for active state */
@@ -97,10 +135,12 @@
               background-color: #45a049;
           }
 
-          /* Additional styles for centering the submit button */
-       .form-group.submit-group {
-           text-align: center;
-       }
+        /* Additional styles for centering the submit button */
+    	.form-group.submit-group {
+   	 display: flex;
+   	 justify-content: center;
+  	 align-items: center;
+	}		
 
        /* Style for outlining required fields in red */
        input:required:invalid {
@@ -112,16 +152,113 @@
            border: 2px solid green;
        }
 
+     
+    .container {
+        /* ... existing styles ... */
+        border: 2px solid #ddd; /* Add a light grey border */
+
+    }
+
+    .form-group {
+        /* ... existing styles ... */
+        border-bottom: 1px solid #ddd; /* Add a light grey bottom border */
+        padding-bottom: 1%; /* Add some padding at the bottom */
+    }
+
+    /* To ensure the last .form-group doesn't have a border-bottom */
+    .form-group:last-child {
+        border-bottom: none;
+    }
+
+    /* New style for the submit button wrapper to add top border */
+    .form-group.submit-group {
+        border-top: 1px solid #ddd; /* Add a light grey top border */
+        padding-top: 20px; /* Add some padding at the top */
+    }
+
+/* Modern Design Upgrade CSS */
+
+/* General background */
+body {
+    background-color: #000; /* Black background outside the form area */
+}
+
+/* Form background - resembling a smartphone */
+.container {
+    background-color: #f2f2f2; /* Light grey background for the form area */
+    padding: 20px;
+    border-radius: 25px; /* Rounded corners for the smartphone shape */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Adding depth with shadow */
+    border: 5px solid #555; /* Solid border to mimic a phone's edge */
+    max-width: 500px; /* Maximum width to resemble a smartphone width */
+    margin: auto; /* Center the form container */
+}
+
+/* Button styles */
+.btn {
+    background-color: #4CAF50; /* Green color for buttons */
+    color: white;
+    border-radius: 15px; /* Slightly rounded buttons */
+}
+
+.btn:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Input fields styles */
+input[type="text"], input[type="email"] {
+    border: 1px solid #ccc; /* Default border color */
+    background-color: #fff; /* White background for input fields */
+    border-radius: 15px; /* Slightly rounded input fields */
+}
+
+/* Submit button specific styles */
+.form-group.submit-group button {
+    width: auto;
+    padding: 10px 20px;
+    margin: 20px 0; /* Extra space at the bottom */
+    border-radius: 15px; /* Slightly rounded submit button */
+}
+
+/* Border and line styles for each input field group */
+.form-group {
+    border-bottom: 1px solid #ddd; /* Light grey line below each form group */
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+/* Last form-group doesn't have a border at the bottom */
+.form-group:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+/* Required field border color */
+input:required:invalid {
+    border-color: red;
+}
+
+input:required:valid {
+    border-color: green;
+}
+
+
+
     </style>
+
+
 
 </head>
 <body>
+
+<div class="container">
 
 <h1>What is my bill?</h1>
 <form id="myForm" action="YOUR_BACKEND_ENDPOINT" method="POST">
 
     <div class="form-group">
-        <label>Choose bill type (Getting a new phone or just plan? ) *</label>
+        <label> Getting a new phone or just plan? </label>
         <button type="button" id="byod" class="btn" onclick="toggleFields('BYOD')">BYOD (No-Term, Continue using current phone)</button>
         <button type="button" id="newPhone" class="btn" onclick="toggleFields('New Phone')">New Phone (Contract)</button>
 
@@ -162,9 +299,10 @@
         </div>
 
     </div>
-    <div class="form-group">
-        <button type="submit">Submit</button>
-    </div>
+   <div class="form-group submit-group">
+    <button type="submit" class="btn">Submit</button>
+</div>
+ </div>
 </form>
 
 <script>
