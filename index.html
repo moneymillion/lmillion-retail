@@ -266,7 +266,7 @@ input:required:valid {
 
         <div class="form-group">
           <label>Getting a new phone or just plan?</label>
-          <button type="button" id="byod" class="btn" onclick="toggleFields('BYOD')">BYOD (No-Term, Continue using current phone)</button>
+          <button type="button" id="byod" class="btn" onclick="toggleFields('BYOD')">BYOD (No Contract, Monthly)</button>
           <button type="button" id="newPhone" class="btn" onclick="toggleFields('New Phone')">New Phone (Contract)</button>
         </div>
 
@@ -303,19 +303,27 @@ input:required:valid {
 
         <div id="byodFields" class="hidden">
           <div class="form-group">
-              <label for="monthlyPlanCostNoTerm">Monthly Plan Cost *</label>
-              <input type="number" id="monthlyPlanCostNoTerm" name="monthlyPlanCostNoTerm" required step="0.01">
+              <label for="monthlyPlanCostNoTerm">Monthly Plan Cost (Required) </label>
+              <input type="number" id="monthlyPlanCostNoTerm" name="monthlyPlanCostNoTerm" placeholder="Enter monthly plan cost (before tax)" required step="0.01">
           </div>
 
           <div class="form-group">
-              <label for="monthlyAddonCostBYOD">Monthly Add-on Cost (If applicable)</label>
-              <input type="number" id="monthlyAddonCostBYOD" name="monthlyAddonCostBYOD" step="0.01">
+              <label for="monthlyAddonCostBYOD">Monthly Add-on Cost</label>
+              <input type="number" id="monthlyAddonCostBYOD" name="monthlyAddonCostBYOD" placeholder="Enter 0 if not applicable" step="0.01">
           </div>
 
           <div class="form-group">
-          <label for="oneTimeCharges">One time charges:</label>
-          <input type="number" id="oneTimeCharges" name="oneTimeCharges" placeholder="Enter one time charge amount">
+          <label for="oneTimeCharges">One time charges</label>
+          <input type="number" id="oneTimeCharges" name="oneTimeCharges" placeholder="Enter 0 if not applicable">
           </div>'
+
+          <div class="form-group">
+              <label for="oneTimeChargesWaived">Waive one time Charge? </label>
+              <select id="oneTimeChargesWaived" name="oneTimeChargesWaived">
+                  <option value="YES">YES</option>
+                  <option value="NO">NO</option>
+              </select>
+          </div>
 
           <!-- ... other input fields for BYOD ... -->
           <div class="form-group submit-group">

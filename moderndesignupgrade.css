@@ -122,6 +122,8 @@ body, html {
   border-radius: 10px;
 }
 
+
+
 /* Styles for form elements */
 label, input, button {
   display: block;
@@ -207,6 +209,57 @@ h1 {
   background: white; /* Background of the screen */
   border-radius: 20px; /* Rounded corners of the screen */
 }
+
+/* this is to update all SELECT type form , like the YES/NO, province, country selectors*/
+/* Styles for the dropdown */
+select#oneTimeChargesWaived {
+  width: 100%; /* Make the select box full width */
+  padding: 10px; /* Add some padding inside the select box */
+  border-radius: 20px; /* Round the corners */
+  border: 1px solid #ccc; /* Add a border similar to the input fields */
+  -webkit-appearance: none; /* Remove default styling */
+  -moz-appearance: none; /* Remove default styling */
+  appearance: none; /* Remove default styling */
+  background-color: #fff; /* Background color similar to other input fields */
+  text-align-last: center; /* For modern browsers */
+  text-align: center; /* For older browsers; may not work in all cases */
+  -moz-text-align-last: center; /* For Firefox */
+}
+
+/* You may also want to style the dropdown arrow to match */
+.select-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  vertical-align: middle;
+  border-top: 5px solid;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+/* Style the wrapper to position the arrow */
+.select-wrapper {
+  position: relative;
+}
+
+/* Position the arrow inside the wrapper */
+.select-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  border-top: 5px solid #000; /* Arrow color */
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+
+/* Hide the browser's default dropdown arrow */
+select#oneTimeChargesWaived::-ms-expand {
+  display: none;
+}
+
 
 
 
