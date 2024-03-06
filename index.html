@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,7 +57,7 @@
 	    text-align: center;
         }
         input[type="text"], input[type="email"] {
-           
+
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 40px;
@@ -140,7 +140,7 @@
    	 display: flex;
    	 justify-content: center;
   	 align-items: center;
-	}		
+	}
 
        /* Style for outlining required fields in red */
        input:required:invalid {
@@ -152,7 +152,7 @@
            border: 2px solid green;
        }
 
-     
+
     .container {
         /* ... existing styles ... */
         border: 2px solid #ddd; /* Add a light grey border */
@@ -250,110 +250,248 @@ input:required:valid {
 
 
 </head>
+
 <body>
 
 <div class="container">
+  <!-- Add a span to wrap the notch and h1 text -->
+  <div class="notch-and-title">
+    <div class="phone-notch"></div>
+    <h1>What is my bill?</h1>
+  </div>
 
-<h1>What is my bill?</h1>
-<form id="myForm" action="YOUR_BACKEND_ENDPOINT" method="POST">
+  <div class="phone-wrapper">
+    <div class="phone-screen">
+      <form id="myForm" action="#">
 
-    <div class="form-group">
-        <label> Getting a new phone or just plan? </label>
-        <button type="button" id="byod" class="btn" onclick="toggleFields('BYOD')">BYOD (No-Term, Continue using current phone)</button>
-        <button type="button" id="newPhone" class="btn" onclick="toggleFields('New Phone')">New Phone (Contract)</button>
+        <div class="form-group">
+          <label>Getting a new phone or just plan?</label>
+          <button type="button" id="byod" class="btn" onclick="toggleFields('BYOD')">BYOD (No-Term, Continue using current phone)</button>
+          <button type="button" id="newPhone" class="btn" onclick="toggleFields('New Phone')">New Phone (Contract)</button>
+        </div>
 
+        <div id="newPhoneFields" class="hidden">
+          <div class="form-group">
+              <label for="monthlyPlanCostContract">Monthly Plan Cost *</label>
+              <input type="number" id="monthlyPlanCostContract" name="monthlyPlanCostContract" required step="0.01">
+          </div>
+
+          <div class="form-group">
+              <label for="phoneRetailCost">Phone Retail Cost *</label>
+              <input type="number" id="phoneRetailCost" name="phoneRetailCost" required step="0.01">
+          </div>
+
+          <div class="form-group">
+              <label for="monthlyAddonCost">Monthly Add-on (If applicable) Cost</label>
+              <input type="number" id="monthlyAddonCost" name="monthlyAddonCost" step="0.01">
+          </div>
+
+          <div class="form-group">
+              <label for="downPayment">Total down payment (If applicable)</label>
+              <input type="number" id="downPayment" name="downPayment" step="0.01">
+          </div>
+
+          <div class="form-group">
+              <label for="financingDiscount">Phone Financing Discount (If applicable)</label>
+              <input type="number" id="financingDiscount" name="financingDiscount" step="0.01">
+          </div>
+          <!-- ... other input fields for New Phone ... -->
+          <div class="form-group submit-group">
+            <button type="button" id="phoneSubmit" class="btn">Submit New Phone</button>
+          </div>
+        </div>
+
+        <div id="byodFields" class="hidden">
+          <div class="form-group">
+              <label for="monthlyPlanCostNoTerm">Monthly Plan Cost *</label>
+              <input type="number" id="monthlyPlanCostNoTerm" name="monthlyPlanCostNoTerm" required step="0.01">
+          </div>
+
+          <div class="form-group">
+              <label for="monthlyAddonCostBYOD">Monthly Add-on Cost (If applicable)</label>
+              <input type="number" id="monthlyAddonCostBYOD" name="monthlyAddonCostBYOD" step="0.01">
+          </div>
+
+          <div class="form-group">
+          <label for="oneTimeCharges">One time charges:</label>
+          <input type="number" id="oneTimeCharges" name="oneTimeCharges" placeholder="Enter one time charge amount">
+          </div>'
+
+          <!-- ... other input fields for BYOD ... -->
+          <div class="form-group submit-group">
+            <button type="button" id="byodSubmit" class="btn">Submit BYOD</button>
+          </div>
+        </div>
+
+      </form>
     </div>
-    <div id="newPhoneFields" class="hidden">
-        <div class="form-group">
-            <label for="monthlyPlanCostContract">Monthly Plan Cost *</label>
-            <input type="text" id="monthlyPlanCostContract" name="monthlyPlanCostContract" required>
-        </div>
+  </div>
 
-        <div class="form-group">
-            <label for="phoneRetailCost">Phone Retail Cost *</label>
-            <input type="text" id="phoneRetailCost" name="phoneRetailCost" required>
-        </div>
 
-        <div class="form-group">
-            <label for="monthlyAddonCost">Monthly Add-on (If applicable) Cost</label>
-            <input type="text" id="monthlyAddonCost" name="monthlyAddonCost">
-        </div>
 
-        <div class="form-group">
-            <label for="downPayment">Total down payment (If applicable)</label>
-            <input type="text" id="downPayment" name="downPayment">
-        </div>
-        <div class="form-group">
-            <label for="financingDiscount">Phone Financing Discount (If applicable)</label>
-            <input type="text" id="financingDiscount" name="financingDiscount">
-        </div>
-    </div>
-    <div id="byodFields" class="hidden">
-        <div class="form-group">
-            <label for="monthlyPlanCostNoTerm">Monthly Plan Cost *</label>
-            <input type="text" id="monthlyPlanCostNoTerm" name="monthlyPlanCostNoTerm" required>
-        </div>
-        <div class="form-group">
-            <label for="monthlyAddonCost">Monthly Add-on Cost (If applicable)</label>
-            <input type="text" id="monthlyAddonCost" name="monthlyAddonCost">
-        </div>
+ <script>
 
-    </div>
-   <div class="form-group submit-group">
-    <button type="submit" class="btn">Submit</button>
-</div>
- </div>
-</form>
+let globalPlanCostbyod = 0;
+let globalAddonCostbyod = 0;
+let globalfirstbill = 0;
 
-<script>
+ // Function to toggle fields based on the selected option
 function toggleFields(selectedType) {
-    var byodFields = document.getElementById('byodFields');
-    var newPhoneFields = document.getElementById('newPhoneFields');
+ var byodFields = document.getElementById('byodFields');
+ var newPhoneFields = document.getElementById('newPhoneFields');
 
-    // Remove 'active' class from all buttons
-    document.getElementById('byod').classList.remove('active');
-    document.getElementById('newPhone').classList.remove('active');
+ // Hide both sections and only show the selected one
+ byodFields.style.display = 'none';
+ newPhoneFields.style.display = 'none';
 
-    // Add 'active' class to the clicked button and toggle visibility of fields
-    if (selectedType === 'BYOD') {
-        document.getElementById('byod').classList.add('active');
-        byodFields.style.display = 'block';
-        newPhoneFields.style.display = 'none';
-    } else if (selectedType === 'New Phone') {
-        document.getElementById('newPhone').classList.add('active');
-        byodFields.style.display = 'none';
-        newPhoneFields.style.display = 'block';
-    }
+ if (selectedType === 'BYOD') {
+     byodFields.style.display = 'block';
+ } else if (selectedType === 'New Phone') {
+     newPhoneFields.style.display = 'block';
+ }
 }
 
-// Add event listener to form submit to prevent default for demo purposes
-document.getElementById('myForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    alert('Form submitted');
-    // Additional code to handle form submission
+// Check if the BYOD fields are filled
+function areByodFieldsFilled() {
+ return document.getElementById('monthlyPlanCostNoTerm').value &&
+        document.getElementById('monthlyAddonCostBYOD').value &&
+        document.getElementById('oneTimeCharges').value;
+}
+
+// Modified displayNextForm function to include country and province dropdowns
+function displayNextForm() {
+
+   globalPlanCostbyod = parseFloat(document.getElementById('monthlyPlanCostNoTerm').value) || 0;
+   globalAddonCostbyod = parseFloat(document.getElementById('monthlyAddonCostBYOD').value) || 0;
+   globalfirstbill = parseFloat(document.getElementById('oneTimeCharges').value) || 0;
+
+
+    document.querySelector('.phone-screen').innerHTML =
+    '<form id="countryForm">' +
+    '<div class="form-group">' +
+    '<label>Select country:</label>' +
+    '<select id="country" name="country">' +
+    '<option value="CANADA">CANADA</option>' +
+    '</select>' +
+    '</div>' +
+    '<div class="form-group">' +
+    '<label>Select province:</label>' +
+    '<select id="province" name="province">' +
+    '<option value="ALBERTA">Alberta</option>' +
+    '<option value="BRITISH_COLUMBIA">British Columbia</option>' +
+    '<option value="MANITOBA">Manitoba</option>' +
+    '<option value="NEW_BRUNSWICK">New Brunswick</option>' +
+    '<option value="NEWFOUNDLAND_AND_LABRADOR">Newfoundland and Labrador</option>' +
+    '<option value="NORTHWEST_TERRITORIES">Northwest Territories</option>' +
+    '<option value="NOVA_SCOTIA">Nova Scotia</option>' +
+    '<option value="NUNAVUT">Nunavut</option>' +
+    '<option value="ONTARIO">Ontario</option>' +
+    '<option value="PRINCE_EDWARD_ISLAND">Prince Edward Island</option>' +
+    '<option value="QUEBEC">Quebec</option>' +
+    '<option value="SASKATCHEWAN">Saskatchewan</option>' +
+    '<option value="YUKON">Yukon</option>' +
+    '</select>' +
+    '</div>' +
+    '<div class="form-group submit-group">' +
+    '<button type="button" id="finalSubmit" class="btn">Calculate Bill</button>' +
+    '</div>' +
+    '</form>';
+
+    // Add event listener for the final submit button within the new form
+    document.getElementById('finalSubmit').addEventListener('click', calculateFinalBill);
+}
+
+function calculateFinalBill() {
+    var province = document.getElementById('province').value;
+    var taxRate;
+    switch (province) {
+        case "ALBERTA":
+        case "BRITISH_COLUMBIA":
+        case "MANITOBA":
+        case "NORTHWEST_TERRITORIES":
+        case "NUNAVUT":
+        case "QUEBEC":
+        case "SASKATCHEWAN":
+        case "YUKON":
+            taxRate = 0.05;
+            break;
+        case "ONTARIO":
+            taxRate = 0.13;
+            break;
+        case "NEW_BRUNSWICK":
+        case "NEWFOUNDLAND_AND_LABRADOR":
+        case "NOVA_SCOTIA":
+        case "PRINCE_EDWARD_ISLAND":
+            taxRate = 0.15;
+            break;
+        default:
+            taxRate = 0; // Default case if the province is not on the list.
+    }
+
+    var totalBill = (globalPlanCostbyod + globalAddonCostbyod) * (1 + taxRate);
+    var firstbill = (globalPlanCostbyod + globalAddonCostbyod + globalfirstbill) * (1 + taxRate);
+
+    // Clear the form and display the total bill as text
+    var form = document.querySelector('.phone-screen form');
+    form.innerHTML = ''; // Clear out all form content
+
+    // Create a new div to hold the total bill text
+    var billDiv = document.createElement('div');
+    billDiv.style.textAlign = 'center';
+    billDiv.style.margin = '20px 0'; // Add some spacing around the text
+    billDiv.style.fontSize = '1.2em'; // Make the text a little larger
+    billDiv.style.wordWrap = 'break-word'; // Ensure the text wraps to avoid overflow
+    billDiv.innerHTML = "<strong>Bill Summary Including Tax</strong><br>" + "<br>" +
+                        "Total monthly bill after tax: $" + totalBill.toFixed(2) + "<br>" + "<br>" +
+                        "1st Bill is $" + firstbill.toFixed(2) + "<br>" +
+                        "2st Bill is $" + totalBill.toFixed(2) + "<br>" +
+                        "3rd Bill is $" + totalBill.toFixed(2) + "<br>" +
+                        "4th Bill is $" + totalBill.toFixed(2) + "<br>" +
+                        "5th Bill is $" + totalBill.toFixed(2) + "<br>" +
+                        "6th Bill is $" + totalBill.toFixed(2);
+
+
+    // Append the new div to the form container
+    form.appendChild(billDiv);
+
+    var homeButton = document.createElement('button');
+        homeButton.innerText = 'Back to Home';
+        homeButton.className = 'btn'; // Assuming 'btn' class is for styling
+        homeButton.onclick = function() {
+            location.reload(); // This will reload the page
+        };
+
+        // Append the "Home" button below the total bill text
+        form.appendChild(homeButton);
+    }
+
+// Modify the event listener for byodSubmit to use displayNextForm directly without calculating the bill immediately
+document.getElementById('byodSubmit').addEventListener('click', function() {
+    if (areByodFieldsFilled()) {
+        displayNextForm();
+    } else {
+        alert('Please fill in all fields for the BYOD plan.');
+    }
 });
 
-// Function to handle button click and select the option
-function selectOption(selectedId) {
-    // Toggle fields based on selected option
-    toggleFields(selectedId);
-}
+// Make sure to add event listener for 'finalSubmit' button after new form is added to DOM
+document.addEventListener('click', function(event) {
+    if (event.target && event.target.id === 'finalSubmit') {
+        calculateFinalBill();
+    }
+});
 
-// Add validation event listeners
-    document.addEventListener('DOMContentLoaded', function() {
-        var inputs = document.querySelectorAll('input:required');
-        inputs.forEach(function(input) {
-            input.oninput = function() {
-                if (input.validity.valid) {
-                    input.style.borderColor = 'green';
-                } else {
-                    input.style.borderColor = 'red';
-                }
-            };
-        });
-    });
+// Rest of the code remains unchanged...
 
-</script>
+     document.getElementById('newPhone').addEventListener('click', function() {
+         toggleFields('New Phone');
+     });
+
+     // Add validation event listeners for required fields
+
+ </script>
+
+
 
 
 </body>
