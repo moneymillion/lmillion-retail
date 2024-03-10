@@ -366,7 +366,7 @@ function calculateFinalBillContract() {
        var leaseContent = "<h4>Option: Lease </h4>" +
                           "Total monthly on Lease: $" + leasingMonthlyTotalBill.toFixed(2) + "<br>" + "<br>" +
                           "Monthly Plan cost is $" + planmonthlycost.toFixed(2) + "<br>" +
-                          "Monthly Leasing is $" + leasingMonthlyTotalBill.toFixed(2) + "<br>";
+                          "Monthly Leasing is $" + monthlycostcontractperiodatlease.toFixed(2) + "<br>";
 
        if (globalLeaseOrFinanceChoice === '') {
          // User has not made a choice, show both options
