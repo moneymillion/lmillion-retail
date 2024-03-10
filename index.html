@@ -6,249 +6,6 @@
     <title>What is my bill?</title>
 <link rel="stylesheet" type="text/css" href="moderndesignupgrade.css">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            width: 100%;
-            margin: 0 auto;
-            padding-top: 0.5%;
-        }
-        h1 {
-            text-align: center;
-            margin: 5% 0; /* Add top and bottom margins */
-
-        }
-
-       .container {
-            padding: 0 5%; /* Add 5% padding to the left and right */
-            max-width: 600px; /* Maximum width */
-            margin: auto; /* Center the container */
-        }
-
-	#byodFields, #newPhoneFields {
-    	background-color: #f2f2f2; /* Light grey background */
-    	padding: 15px;
-    	border-radius: 10px; /* Slightly rounded corners for aesthetics */
-    	margin-bottom: 20px; /* Space below the section */
-	}
-
-	/* This will also ensure that the red border from validation is visible */
-	input:required:invalid {
-    	border: 2px solid red;
-    	background-color: #fff; /* White background to make the red border stand out */
-	}
-
-	/* You might want to ensure the valid input stands out as well */
-	input:required:valid {
-    	border: 2px solid green;
-    	background-color: #f2f2f2; /* Light grey background to match the section */
-	}
-
-
-
-        .form-group {
-            margin-bottom: 3%;
-        }
-
-        label {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5%;
-	    text-align: center;
-        }
-        input[type="text"], input[type="email"] {
-
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 40px;
-            width: calc(100% - 15%); /* Adjust width to account for border */
-            margin: 0 auto; /* Centers the button */
-	    margin-bottom: 1%;
-    	    display: block; /* Needed along with margin: 0 auto; to center */
-        }
-
-        .btn {
-            background-color: #4C68D7; /* Blue color */
-            color: white;
-            padding: 10px 20px;
-            border: 2px solid black; /* Black border */
-            border-radius: 20px; /* Increased border radius */
-            cursor: pointer;
-            outline: none;
-            width: calc(100% - 24px); /* Adjust width to account for border */
-            margin: 0 auto; /* Centers the button */
-	    margin-bottom: 2%;
-    	    display: block; /* Needed along with margin: 0 auto; to center */
-	}
-
-        .btn.active {
-            background-color: #3B4B9D; /* Darker blue for active state */
-        }
-
-        /* Hover effect for buttons */
-        .btn:hover {
-            background-color: #365A9C;
-        }
-
-        /* Remove styles from radio buttons */
-        input[type="radio"] {
-            display: none;
-        }
-
-        /* Style for labels associated with radio buttons to look like buttons */
-        label.btn {
-            cursor: pointer;
-            display: inline-block;
-            margin-right: 10px; /* Space between label buttons */
-        }
-
-        /* Adjust form submit button */
-        .form-group button {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 20px; /* Increased border radius */
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .form-group button:hover {
-            background-color: #45a049;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .form-group .next-button {
-              background-color: #4CAF50; /* Green color for Next button */
-              color: white;
-              padding: 10px;
-              margin-top: 10px;
-              border: none;
-              border-radius: 20px;
-              cursor: pointer;
-              font-size: 16px;
-          }
-          .form-group .next-button:hover {
-              background-color: #45a049;
-          }
-
-        /* Additional styles for centering the submit button */
-    	.form-group.submit-group {
-   	 display: flex;
-   	 justify-content: center;
-  	 align-items: center;
-	}
-
-       /* Style for outlining required fields in red */
-       input:required:invalid {
-           border: 2px solid red;
-       }
-
-       /* Style for when the input becomes valid */
-       input:required:valid {
-           border: 2px solid green;
-       }
-
-
-    .container {
-        /* ... existing styles ... */
-        border: 2px solid #ddd; /* Add a light grey border */
-
-    }
-
-    .form-group {
-        /* ... existing styles ... */
-        border-bottom: 1px solid #ddd; /* Add a light grey bottom border */
-        padding-bottom: 1%; /* Add some padding at the bottom */
-    }
-
-    /* To ensure the last .form-group doesn't have a border-bottom */
-    .form-group:last-child {
-        border-bottom: none;
-    }
-
-    /* New style for the submit button wrapper to add top border */
-    .form-group.submit-group {
-        border-top: 1px solid #ddd; /* Add a light grey top border */
-        padding-top: 20px; /* Add some padding at the top */
-    }
-
-/* Modern Design Upgrade CSS */
-
-/* General background */
-body {
-    background-color: #000; /* Black background outside the form area */
-}
-
-/* Form background - resembling a smartphone */
-.container {
-    background-color: #f2f2f2; /* Light grey background for the form area */
-    padding: 20px;
-    border-radius: 25px; /* Rounded corners for the smartphone shape */
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Adding depth with shadow */
-    border: 5px solid #555; /* Solid border to mimic a phone's edge */
-    max-width: 500px; /* Maximum width to resemble a smartphone width */
-    margin: auto; /* Center the form container */
-}
-
-/* Button styles */
-.btn {
-    background-color: #4CAF50; /* Green color for buttons */
-    color: white;
-    border-radius: 15px; /* Slightly rounded buttons */
-}
-
-.btn:hover {
-    background-color: #45a049; /* Darker green on hover */
-}
-
-/* Input fields styles */
-input[type="text"], input[type="email"] {
-    border: 1px solid #ccc; /* Default border color */
-    background-color: #fff; /* White background for input fields */
-    border-radius: 15px; /* Slightly rounded input fields */
-}
-
-/* Submit button specific styles */
-.form-group.submit-group button {
-    width: auto;
-    padding: 10px 20px;
-    margin: 20px 0; /* Extra space at the bottom */
-    border-radius: 15px; /* Slightly rounded submit button */
-}
-
-/* Border and line styles for each input field group */
-.form-group {
-    border-bottom: 1px solid #ddd; /* Light grey line below each form group */
-    padding-bottom: 15px;
-    margin-bottom: 15px;
-}
-
-/* Last form-group doesn't have a border at the bottom */
-.form-group:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-/* Required field border color */
-input:required:invalid {
-    border-color: red;
-}
-
-input:required:valid {
-    border-color: green;
-}
-
-
-
-    </style>
-
-
-
 </head>
 
 <body>
@@ -295,6 +52,33 @@ input:required:valid {
               <label for="financingDiscount">Phone Financing Discount (If applicable)</label>
               <input type="number" id="financingDiscount" name="financingDiscount" step="0.01">
           </div>
+
+          <div class="form-group">
+          <label for="oneTimeCharges">One time charges</label>
+          <input type="number" id="oneTimeChargescontract" name="oneTimeChargescontract" placeholder="Enter 0 if not applicable">
+          </div>
+
+          <div class="form-group">
+              <label for="oneTimeChargesWaivedcontract">Waive one time Charge? </label>
+              <select id="oneTimeChargesWaivedcontract" name="oneTimeChargesWaivedcontract">
+                  <option value="YES">YES</option>
+                  <option value="NO">NO</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <label for="leaseorfinance">Leasing or Financing? </label>
+              <select id="leaseorfinanceid" name="leaseorfinancename" onchange="toggleLeaseBuyOutField()">
+                  <option value="Finance">Finance</option>
+                  <option value="Lease">Lease</option>
+              </select>
+          </div>
+          <!-- Placeholder for lease buy-out amount field, initially hidden -->
+          <div class="form-group" id="leaseBuyOutField" style="display: none;">
+              <label for="leaseBuyOutAmount">What is the lease buy-out amount: </label>
+              <input type="number" id="leaseBuyOutAmount" name="leaseBuyOutAmount">
+          </div>
+
           <!-- ... other input fields for New Phone ... -->
           <div class="form-group submit-group">
             <button type="button" id="phoneSubmit" class="btn">Submit New Phone</button>
@@ -315,7 +99,7 @@ input:required:valid {
           <div class="form-group">
           <label for="oneTimeCharges">One time charges</label>
           <input type="number" id="oneTimeCharges" name="oneTimeCharges" placeholder="Enter 0 if not applicable">
-          </div>'
+          </div>
 
           <div class="form-group">
               <label for="oneTimeChargesWaived">Waive one time Charge? </label>
@@ -336,171 +120,6 @@ input:required:valid {
   </div>
 
 
-
- <script>
-
-let globalPlanCostbyod = 0;
-let globalAddonCostbyod = 0;
-let globalfirstbill = 0;
-
- // Function to toggle fields based on the selected option
-function toggleFields(selectedType) {
- var byodFields = document.getElementById('byodFields');
- var newPhoneFields = document.getElementById('newPhoneFields');
-
- // Hide both sections and only show the selected one
- byodFields.style.display = 'none';
- newPhoneFields.style.display = 'none';
-
- if (selectedType === 'BYOD') {
-     byodFields.style.display = 'block';
- } else if (selectedType === 'New Phone') {
-     newPhoneFields.style.display = 'block';
- }
-}
-
-// Check if the BYOD fields are filled
-function areByodFieldsFilled() {
- return document.getElementById('monthlyPlanCostNoTerm').value &&
-        document.getElementById('monthlyAddonCostBYOD').value &&
-        document.getElementById('oneTimeCharges').value;
-}
-
-// Modified displayNextForm function to include country and province dropdowns
-function displayNextForm() {
-
-   globalPlanCostbyod = parseFloat(document.getElementById('monthlyPlanCostNoTerm').value) || 0;
-   globalAddonCostbyod = parseFloat(document.getElementById('monthlyAddonCostBYOD').value) || 0;
-   globalfirstbill = parseFloat(document.getElementById('oneTimeCharges').value) || 0;
-
-
-    document.querySelector('.phone-screen').innerHTML =
-    '<form id="countryForm">' +
-    '<div class="form-group">' +
-    '<label>Select country:</label>' +
-    '<select id="country" name="country">' +
-    '<option value="CANADA">CANADA</option>' +
-    '</select>' +
-    '</div>' +
-    '<div class="form-group">' +
-    '<label>Select province:</label>' +
-    '<select id="province" name="province">' +
-    '<option value="ALBERTA">Alberta</option>' +
-    '<option value="BRITISH_COLUMBIA">British Columbia</option>' +
-    '<option value="MANITOBA">Manitoba</option>' +
-    '<option value="NEW_BRUNSWICK">New Brunswick</option>' +
-    '<option value="NEWFOUNDLAND_AND_LABRADOR">Newfoundland and Labrador</option>' +
-    '<option value="NORTHWEST_TERRITORIES">Northwest Territories</option>' +
-    '<option value="NOVA_SCOTIA">Nova Scotia</option>' +
-    '<option value="NUNAVUT">Nunavut</option>' +
-    '<option value="ONTARIO">Ontario</option>' +
-    '<option value="PRINCE_EDWARD_ISLAND">Prince Edward Island</option>' +
-    '<option value="QUEBEC">Quebec</option>' +
-    '<option value="SASKATCHEWAN">Saskatchewan</option>' +
-    '<option value="YUKON">Yukon</option>' +
-    '</select>' +
-    '</div>' +
-    '<div class="form-group submit-group">' +
-    '<button type="button" id="finalSubmit" class="btn">Calculate Bill</button>' +
-    '</div>' +
-    '</form>';
-
-    // Add event listener for the final submit button within the new form
-    document.getElementById('finalSubmit').addEventListener('click', calculateFinalBill);
-}
-
-function calculateFinalBill() {
-    var province = document.getElementById('province').value;
-    var taxRate;
-    switch (province) {
-        case "ALBERTA":
-        case "BRITISH_COLUMBIA":
-        case "MANITOBA":
-        case "NORTHWEST_TERRITORIES":
-        case "NUNAVUT":
-        case "QUEBEC":
-        case "SASKATCHEWAN":
-        case "YUKON":
-            taxRate = 0.05;
-            break;
-        case "ONTARIO":
-            taxRate = 0.13;
-            break;
-        case "NEW_BRUNSWICK":
-        case "NEWFOUNDLAND_AND_LABRADOR":
-        case "NOVA_SCOTIA":
-        case "PRINCE_EDWARD_ISLAND":
-            taxRate = 0.15;
-            break;
-        default:
-            taxRate = 0; // Default case if the province is not on the list.
-    }
-
-    var totalBill = (globalPlanCostbyod + globalAddonCostbyod) * (1 + taxRate);
-    var firstbill = (globalPlanCostbyod + globalAddonCostbyod + globalfirstbill) * (1 + taxRate);
-
-    // Clear the form and display the total bill as text
-    var form = document.querySelector('.phone-screen form');
-    form.innerHTML = ''; // Clear out all form content
-
-    // Create a new div to hold the total bill text
-    var billDiv = document.createElement('div');
-    billDiv.style.textAlign = 'center';
-    billDiv.style.margin = '20px 0'; // Add some spacing around the text
-    billDiv.style.fontSize = '1.2em'; // Make the text a little larger
-    billDiv.style.wordWrap = 'break-word'; // Ensure the text wraps to avoid overflow
-    billDiv.innerHTML = "<strong>Bill Summary Including Tax</strong><br>" + "<br>" +
-                        "Total monthly bill after tax: $" + totalBill.toFixed(2) + "<br>" + "<br>" +
-                        "1st Bill is $" + firstbill.toFixed(2) + "<br>" +
-                        "2st Bill is $" + totalBill.toFixed(2) + "<br>" +
-                        "3rd Bill is $" + totalBill.toFixed(2) + "<br>" +
-                        "4th Bill is $" + totalBill.toFixed(2) + "<br>" +
-                        "5th Bill is $" + totalBill.toFixed(2) + "<br>" +
-                        "6th Bill is $" + totalBill.toFixed(2);
-
-
-    // Append the new div to the form container
-    form.appendChild(billDiv);
-
-    var homeButton = document.createElement('button');
-        homeButton.innerText = 'Back to Home';
-        homeButton.className = 'btn'; // Assuming 'btn' class is for styling
-        homeButton.onclick = function() {
-            location.reload(); // This will reload the page
-        };
-
-        // Append the "Home" button below the total bill text
-        form.appendChild(homeButton);
-    }
-
-// Modify the event listener for byodSubmit to use displayNextForm directly without calculating the bill immediately
-document.getElementById('byodSubmit').addEventListener('click', function() {
-    if (areByodFieldsFilled()) {
-        displayNextForm();
-    } else {
-        alert('Please fill in all fields for the BYOD plan.');
-    }
-});
-
-// Make sure to add event listener for 'finalSubmit' button after new form is added to DOM
-document.addEventListener('click', function(event) {
-    if (event.target && event.target.id === 'finalSubmit') {
-        calculateFinalBill();
-    }
-});
-
-// Rest of the code remains unchanged...
-
-     document.getElementById('newPhone').addEventListener('click', function() {
-         toggleFields('New Phone');
-     });
-
-     // Add validation event listeners for required fields
-
- </script>
-
-
-
-
+<script src="script.js"></script>
 </body>
 </html>
