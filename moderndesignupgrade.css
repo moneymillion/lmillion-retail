@@ -524,6 +524,10 @@ select#oneTimeChargesWaived::-ms-expand {
 }
 
 
+.ad-container {
+  text-align: center;
+  /* Additional styling can be applied here as needed */
+}
 
 
 @media only screen and (max-width: 768px) {

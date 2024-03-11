@@ -314,6 +314,7 @@ function calculateFinalBillContract() {
 //-------------------------------------------------------------------------------
       var leaseOrFinanceChoice = globalLeaseOrFinanceChoice;
       var monthlyTotalBill = planmonthlycost; // Default to planmonthlycost
+      var monthlycostcontractperiodatlease = 0;
 
       if (globalLeaseOrFinanceChoice === 'Lease') {
           var showleaseBuyOutAmount = globalleasebuyout;
@@ -362,11 +363,18 @@ function calculateFinalBillContract() {
 
 
 
-
-       var leaseContent = "<h4>Option: Lease </h4>" +
-                          "Total monthly on Lease: $" + leasingMonthlyTotalBill.toFixed(2) + "<br>" + "<br>" +
-                          "Monthly Plan cost is $" + planmonthlycost.toFixed(2) + "<br>" +
-                          "Monthly Leasing is $" + monthlycostcontractperiodatlease.toFixed(2) + "<br>";
+       var leaseContent = "<h4>Option: Lease</h4>" +
+                   "Total monthly on Lease: $" + leasingMonthlyTotalBill.toFixed(2) + "<br><br>" +
+                   "<div style='border: 1px solid black; padding: 5px; display: flex; align-items: center;'>" + // Border for the entire box and flex display
+                   "<div style='flex: 1; text-align: right; padding-left: 10px; padding-right:10px; white-space: nowrap;'>" + // Left column for text with a right border
+                   "Plan cost:<br>" +
+                   "Lease cost:" +
+                   "</div>" +
+                   "<div style='flex: 1; text-align: left; padding-left: 10px; white-space: nowrap;'>" + // Right column for values with padding and no wrapping
+                   "$" + planmonthlycost.toFixed(2) + "<br>" +
+                   "$" + monthlycostcontractperiodatlease.toFixed(2) +
+                   "</div>" +
+                   "</div><br>";
 
        if (globalLeaseOrFinanceChoice === '') {
          // User has not made a choice, show both options
@@ -377,9 +385,16 @@ function calculateFinalBillContract() {
        }
 
 
-
       // Append the new div to the form container
       form.appendChild(billDivcontract);
+
+      // Add an ad container after the bill summary but before the "Back to Home" button
+      var adContainer = document.createElement('div');
+      adContainer.className = 'ad-container'; // Class for styling the ad container
+      adContainer.innerHTML = '<!-- Google AdSense Code Goes Here -->';
+      adContainer.style.margin = '20px 0'; // Ensure some space around the ad container for aesthetics
+      form.appendChild(adContainer);
+      //-------------------------------------------- for ad
 
      var homeButton = document.createElement('button');
          homeButton.innerText = 'Back to Home';
