@@ -381,7 +381,7 @@ function calculateFinalBillContract() {
          billDivcontract.innerHTML = billsummaryheader + financeContent + "<br>" ;
        } else if (globalLeaseOrFinanceChoice === 'Lease') {
          // User has chosen leasing, show lease option first
-         billDivcontract.innerHTML = billsummaryheader + leaseContent + "<br>" + financeContent;
+         billDivcontract.innerHTML = billsummaryheader + leaseContent + financeContent;
        }
 
 
