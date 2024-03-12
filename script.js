@@ -391,7 +391,7 @@ function calculateFinalBillContract() {
        // Add an ad container after the bill summary but before the "Back to Home" button
        var adContainer = document.createElement('div');
        adContainer.className = 'ad-container'; // Class for styling the ad container
-       adContainer.style.display = 'block';
+       adContainer.style.display = 'none'; // Hide by default
        adContainer.style.margin = '20px 0'; // Ensure some space around the ad container for aesthetics
        form.appendChild(adContainer);
 
@@ -405,7 +405,7 @@ function calculateFinalBillContract() {
        // Create and append the ad slot to the adContainer
        var adSlot = document.createElement('ins');
        adSlot.className = "adsbygoogle";
-       adSlot.style.display = "block";
+       adSlot.style.display = "block"; // AdSense will change this when ad is loaded
        adSlot.setAttribute("data-ad-client", "ca-pub-8859880139377275");
        adSlot.setAttribute("data-ad-slot", "6589621121");
        adSlot.setAttribute("data-ad-format", "auto");
@@ -416,6 +416,19 @@ function calculateFinalBillContract() {
        var initAdScript = document.createElement('script');
        initAdScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
        adContainer.appendChild(initAdScript);
+
+       // Use MutationObserver to check when ad is loaded and change display of container
+       var observer = new MutationObserver(function(mutations) {
+           mutations.forEach(function(mutation) {
+               if (mutation.attributeName === "data-adsbygoogle-status") {
+                   adContainer.style.display = 'block';
+               }
+           });
+       });
+
+       observer.observe(adSlot, {
+           attributes: true
+       });
 
        //-------------------------------------------- for ad
 
