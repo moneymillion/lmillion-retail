@@ -385,16 +385,40 @@ function calculateFinalBillContract() {
        }
 
 
-      // Append the new div to the form container
-      form.appendChild(billDivcontract);
+       // Append the new div to the form container
+       form.appendChild(billDivcontract);
 
-      // Add an ad container after the bill summary but before the "Back to Home" button
-      var adContainer = document.createElement('div');
-      adContainer.className = 'ad-container'; // Class for styling the ad container
-      adContainer.innerHTML = '<!-- Google AdSense Code Goes Here -->';
-      adContainer.style.margin = '20px 0'; // Ensure some space around the ad container for aesthetics
-      form.appendChild(adContainer);
-      //-------------------------------------------- for ad
+       // Add an ad container after the bill summary but before the "Back to Home" button
+       var adContainer = document.createElement('div');
+       adContainer.className = 'ad-container'; // Class for styling the ad container
+       adContainer.style.display = 'block';
+       adContainer.style.margin = '20px 0'; // Ensure some space around the ad container for aesthetics
+       form.appendChild(adContainer);
+
+       // Create and append the ad script to the adContainer
+       var adScript = document.createElement('script');
+       adScript.async = true;
+       adScript.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+       adScript.crossOrigin = "anonymous";
+       adContainer.appendChild(adScript);
+
+       // Create and append the ad slot to the adContainer
+       var adSlot = document.createElement('ins');
+       adSlot.className = "adsbygoogle";
+       adSlot.style.display = "block";
+       adSlot.setAttribute("data-ad-client", "ca-pub-8859880139377275");
+       adSlot.setAttribute("data-ad-slot", "6589621121");
+       adSlot.setAttribute("data-ad-format", "auto");
+       adSlot.setAttribute("data-full-width-responsive", "true");
+       adContainer.appendChild(adSlot);
+
+       // After appending the adSlot, append the script to initiate ads
+       var initAdScript = document.createElement('script');
+       initAdScript.innerHTML = '(adsbygoogle = window.adsbygoogle || []).push({});';
+       adContainer.appendChild(initAdScript);
+
+       //-------------------------------------------- for ad
+
 
      var homeButton = document.createElement('button');
          homeButton.innerText = 'Back to Home';
