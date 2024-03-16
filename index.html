@@ -24,33 +24,33 @@
         <div class="form-group">
           <label>Getting a new phone or just plan?</label>
           <button type="button" id="byod" class="btn" onclick="toggleFields('BYOD')">BYOD (No Contract, Monthly)</button>
-          <button type="button" id="newPhone" class="btn" onclick="toggleFields('New Phone')">New Phone (Contract)</button>
+          <button type="button" id="newPhone" class="btn" onclick="toggleFields('New Phone')">New Phone (Contract, 2 Yrs)</button>
         </div>
 
         <div id="newPhoneFields" class="hidden">
           <div class="form-group">
               <label for="monthlyPlanCostContract">Monthly Plan Cost *</label>
-              <input type="number" id="monthlyPlanCostContract" name="monthlyPlanCostContract" required step="0.01">
+              <input type="number" id="monthlyPlanCostContract" name="monthlyPlanCostContract" placeholder="Enter Plan Cost before tax" required step="0.01">
           </div>
 
           <div class="form-group">
               <label for="phoneRetailCost">Phone Retail Cost *</label>
-              <input type="number" id="phoneRetailCost" name="phoneRetailCost" required step="0.01">
+              <input type="number" id="phoneRetailCost" name="phoneRetailCost" placeholder="Enter Retail Cost before tax" required step="0.01">
           </div>
 
           <div class="form-group">
-              <label for="monthlyAddonCost">Monthly Add-on (If applicable) Cost</label>
-              <input type="number" id="monthlyAddonCost" name="monthlyAddonCost" step="0.01">
+              <label for="monthlyAddonCost">Monthly Add-on Cost</label>
+              <input type="number" id="monthlyAddonCost" name="monthlyAddonCost" placeholder="Enter 0 if not applicable" step="0.01">
           </div>
 
           <div class="form-group">
-              <label for="downPayment">Total down payment (If applicable)</label>
-              <input type="number" id="downPayment" name="downPayment" step="0.01">
+              <label for="downPayment">Total down payment</label>
+              <input type="number" id="downPayment" name="downPayment" placeholder="Enter 0 for No-down or Mandatory-down"step="0.01">
           </div>
 
           <div class="form-group">
-              <label for="financingDiscount">Phone Financing Discount (If applicable)</label>
-              <input type="number" id="financingDiscount" name="financingDiscount" step="0.01">
+              <label for="financingDiscount">Phone Financing Discount</label>
+              <input type="number" id="financingDiscount" name="financingDiscount" placeholder="Enter 0 if not applicable" step="0.01">
           </div>
 
           <div class="form-group">
@@ -78,6 +78,22 @@
               <label for="leaseBuyOutAmount">What is the lease buy-out amount: </label>
               <input type="number" id="leaseBuyOutAmount" name="leaseBuyOutAmount">
           </div>
+
+          <!-- Question for Mandatory Down Payment -->
+          <div class="form-group">
+              <label for="mandatoryDownPayment">Requires mandatory down payment?</label>
+              <select id="mandatoryDownPayment" name="mandatoryDownPayment" class="toggle-select" onchange="toggleDownPaymentPercentageField()">
+                  <option value="No">NO</option>
+                  <option value="Yes">YES</option>
+              </select>
+          </div>
+
+          <!-- Placeholder for Down Payment Percentage, initially hidden -->
+          <div class="form-group" id="downPaymentPercentageField" style="display: none;">
+              <label for="downPaymentPercentage">What is the down payment percentage?</label>
+              <input type="text" id="downPaymentPercentage" name="downPaymentPercentage" onblur="formatPercentage()">
+          </div>
+
 
           <!-- ... other input fields for New Phone ... -->
           <div class="form-group submit-group">

@@ -475,7 +475,7 @@ select#leaseorfinanceid {
 }
 
 
-select#oneTimeChargesWaivedcontract {
+select#oneTimeChargesWaivedcontract, #mandatoryDownPayment {
   width: 100%; /* Make the select box full width */
   padding: 10px; /* Add some padding inside the select box */
   border-radius: 20px; /* Round the corners */

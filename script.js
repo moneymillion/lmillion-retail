@@ -50,6 +50,47 @@ function arenewPhoneFields() {
          document.getElementById('oneTimeChargescontract').value; // Assuming this ID for one-time charges
 }
 
+// Function to toggle the display of the down payment percentage input field
+function toggleDownPaymentPercentageField() {
+    var selection = document.getElementById('mandatoryDownPayment').value;
+    var percentageField = document.getElementById('downPaymentPercentageField');
+    if (selection === 'Yes') {
+        percentageField.style.display = 'block';
+    } else {
+        percentageField.style.display = 'none';
+        document.getElementById('downPaymentPercentage').value = ''; // Clear the percentage field if 'No' is selected
+    }
+}
+
+// Updated formatPercentage function with down payment calculation
+function formatPercentage() {
+    var inputField = document.getElementById('downPaymentPercentage');
+    var value = inputField.value.replace('%', ''); // Remove percentage symbol for calculation
+    var percentage = parseFloat(value) / 100; // Convert to decimal for calculation
+
+    // Only proceed if the percentage is a valid number
+    if (!isNaN(percentage)) {
+        // Calculate the base for the down payment based on the leasing or financing choice
+        var phoneRetailCost = parseFloat(document.getElementById('phoneRetailCost').value) || 0;
+        var financingDiscount = parseFloat(document.getElementById('financingDiscount').value) || 0;
+        var leaseBuyOutAmount = parseFloat(document.getElementById('leaseBuyOutAmount').value) || 0;
+        var leaseOrFinanceChoice = document.getElementById('leaseorfinanceid').value;
+
+        var baseAmount = phoneRetailCost - financingDiscount; // Default base amount calculation
+        if (leaseOrFinanceChoice === 'Lease') {
+            baseAmount -= leaseBuyOutAmount; // Adjust base amount for leasing option
+        }
+
+        // Calculate the total down payment
+        var totalDownPayment = baseAmount * percentage;
+        // Update the Total Down Payment field
+        document.getElementById('downPayment').value = totalDownPayment.toFixed(2);
+    }
+
+    // Re-append the percentage symbol to the input value (for display purposes)
+    inputField.value = `${value}%`;
+}
+
 // Modified displayNextForm function to include country and province dropdowns
 function displayNextForm() {
 
@@ -345,6 +386,8 @@ function calculateFinalBillContract() {
        var financingMonthlyTotalBill = planmonthlycost + phonemonthlycost;
        var leasingMonthlyTotalBill = planmonthlycost + ((phoneTotalCost * (1 + taxRate)) - globalleasebuyout) / 24;
 
+       var downwithtax = globalDownPaymentNewPhone * (1+taxRate);
+
        // Logic to display bill summary including both financing and leasing
      var financeContent = "<h4>Option: Finance</h4>" +
                           "Total monthly on Finance: $" + financingMonthlyTotalBill.toFixed(2) + "<br><br>" +
@@ -357,7 +400,9 @@ function calculateFinalBillContract() {
                           "$" + planmonthlycost.toFixed(2) + "<br>" +
                           "$" + phonemonthlycost.toFixed(2) +
                           "</div>" +
-                          "</div><br><br>" +
+                          "</div><br>"+
+                          "Total downPayment: $" + downwithtax.toFixed(2) +
+                          "<br><br>" +
                           "Return home to view other options";
 
 
@@ -374,14 +419,18 @@ function calculateFinalBillContract() {
                    "$" + planmonthlycost.toFixed(2) + "<br>" +
                    "$" + monthlycostcontractperiodatlease.toFixed(2) +
                    "</div>" +
-                   "</div><br>";
+                   "</div><br>" +
+                   "Total Down Payment: $" + downwithtax.toFixed(2)+
+                   "<br><br>" +
+                   "Return home to view other options";
+
 
        if (globalLeaseOrFinanceChoice === '') {
          // User has not made a choice, show both options
          billDivcontract.innerHTML = billsummaryheader + financeContent + "<br>" ;
        } else if (globalLeaseOrFinanceChoice === 'Lease') {
          // User has chosen leasing, show lease option first
-         billDivcontract.innerHTML = billsummaryheader + leaseContent + "<br>" + financeContent;
+         billDivcontract.innerHTML = billsummaryheader + leaseContent + "<br>";
        }
 
 
@@ -462,7 +511,10 @@ function toggleLeaseBuyOutField() {
     }
 }
 document.getElementById('leaseorfinanceid').addEventListener('change', toggleLeaseBuyOutField);
-
+document.getElementById('leaseorfinanceid').addEventListener('change', function() {
+    // Trigger the calculation when the leasing or financing choice changes
+    formatPercentage(); // This assumes the user has already entered a down payment percentage
+});
 
 document.getElementById('newPhone').addEventListener('click', function() {
     toggleFields('New Phone');
